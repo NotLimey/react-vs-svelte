@@ -1,25 +1,19 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import Btn from "$components/Btn.svelte";
-    import type { CartItemType, ShopItemType } from "$myTypes";
-    import cart, {increment, decrement, removeFromCart} from "$stores/cart";
-	import { products } from "$stores/store";
-    import { fly } from 'svelte/transition';
-
-    let prods: ShopItemType[] = [];
-    let cartItems: CartItemType[] = [];
+	import type { CartItemType } from "$myTypes";
+	import { cart, decrement, increment, removeFromCart } from "$stores/cart";
+    
+    let items: CartItemType[] = [];
 
     cart.subscribe((value) => {
-        cartItems = value;
-    });
-
-    products.subscribe((value) => {
-        prods = value;
+        items = value;
     });
 </script>
 
 
 <div class="flex flex-col gap-y-5">
-    {#each cartItems as item, i}
+    {#each items as item, i}
         <div class="w-full py-4 px-2 border border-black" in:fly="{{ duration: 400 + (i * 100), y: -100}}" out:fly="{{ duration: 200, y:-100 }}">
             <div class="flex justify-between">
                 <p>{item.item.name}</p>

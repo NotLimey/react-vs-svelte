@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ShopItem from "$components/ShopItem.svelte";
-	import { products } from "$stores/store";
 	import type { ShopItemType } from "$myTypes";
+	import { products } from "$stores/store";
 	import { onMount } from "svelte";
     
     let prods: ShopItemType[] = [];

@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sanity/client": "^4.0.0",
 		"firebase": "^9.15.0"
 	}
 }
