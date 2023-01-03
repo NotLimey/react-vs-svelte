@@ -15,6 +15,11 @@
     });
 </script>
 
+<svelte:head>
+    <title>{data.seo.title}</title>
+    <meta name="description" content={data.seo.description} />
+</svelte:head>
+
 <Header />
 <Container classes="mt-24">
     <slot />

@@ -13,7 +13,7 @@
 </script>
 
 <div id={"shopitem-" + item._id} class="w-full flex flex-col border border-transparent hover:bg-gray-50 transition-colors"  in:fly="{{ y: 200, duration: 400 + (index * 50) }}" out:fade="{{duration: 200}}">
-    <img src={item.image} alt={item.name} class="w-full h-48 object-contain" loading="lazy">
+    <img src={item.image} alt={item.name} class="w-full h-48 object-contain">
     <div class="p-2">
         <p class="text-lg font-medium mb-1">{item.name}</p>
         <p class="mb-3">{item.description}</p>
