@@ -3,8 +3,8 @@
 import { createContext } from 'react';
 import Container from '../components/Container';
 import Header from '../components/Header';
-import useCart from '../hooks/useCart';
 import { ShopItemType } from '../types';
+import CartProvider from './CartProvider';
 
 export interface AppContextProps {
 	products: ShopItemType[];
@@ -16,15 +16,13 @@ type AppProviderProps = AppContextProps & {
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);
 
-const AppProvider = ({ children, products }: AppProviderProps) => {
-	useCart(true);
-
-	return (
-		<AppContext.Provider value={{ products }}>
+const AppProvider = ({ children, products }: AppProviderProps) => (
+	<AppContext.Provider value={{ products }}>
+		<CartProvider>
 			<Header />
 			<Container classes='mt-24'>{children}</Container>
-		</AppContext.Provider>
-	);
-};
+		</CartProvider>
+	</AppContext.Provider>
+);
 
 export default AppProvider;

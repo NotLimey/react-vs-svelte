@@ -1,6 +1,7 @@
 import { ReactNode, use } from 'react';
 import client from '../../lib/client';
 import AppProvider, { AppContextProps } from './AppProvider';
+import CartProvider from './CartProvider';
 
 const getData = async (): Promise<AppContextProps> => {
 	const q = `*[_type == "product"] {

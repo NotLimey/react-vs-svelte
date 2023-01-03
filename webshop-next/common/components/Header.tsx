@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import useCart from '../hooks/useCart';
 import Container from './Container';
 
@@ -11,14 +12,14 @@ const Header = () => {
 					Webshop in react
 				</a>
 				<div className='flex items-center'>
-					<a href='/cart' className='mr-10 relative'>
+					<Link href='/cart' className='mr-10 relative'>
 						Cart
 						{cart.length > 0 && (
 							<span className='absolute -top-3' id='cart-count'>
 								{cart.length > 9 ? '9+' : cart.length}
 							</span>
 						)}
-					</a>
+					</Link>
 				</div>
 			</Container>
 		</header>

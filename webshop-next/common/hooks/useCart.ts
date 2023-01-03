@@ -1,37 +1,21 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CartContext } from "../providers/CartProvider";
 import { ShopItemType } from "../types";
 
-const useCart = (init?: boolean) => {
+const useCart = () => {
     const { cart, set } = useContext(CartContext);
-    const [hasLoaded, setHasLoaded] = useState(false)
-
-    useEffect(() => {
-        if (!init) return;
-
-        const storage = window.localStorage;
-        if (!hasLoaded) {
-            const _cart = storage.getItem('cart');
-            set(_cart ? JSON.parse(_cart) : []);
-            setHasLoaded(true);
-            return;
-        }
-
-        storage.setItem('cart', JSON.stringify(cart));
-    }, [init, cart, hasLoaded]);
 
     const addToCart = (item: ShopItemType) => {
-        set((items) => {
-            const existing = items.find((x) => x.id === item._id);
-
-            if (existing) {
-                existing.amount += 1;
-            } else {
-                items.push({ id: item._id, amount: 1, item });
-            }
-
-            return items;
-        });
+        console.log('addToCart', item)
+        let items = [...cart];
+        const existing = items.findIndex((x) => x.id === item._id);
+        if (existing > -1) {
+            items[existing].amount += 1;
+        } else {
+            items.push({ id: item._id, amount: 1, item });
+        }
+        set(items);
+        localStorage.setItem('cart', JSON.stringify(items));
     }
 
     const removeFromCart = (id: number) => {
