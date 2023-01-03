@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
 import { CartItemType } from '../types';
 

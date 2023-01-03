@@ -1,9 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../providers/CartProvider";
 import { ShopItemType } from "../types";
 
-const useCart = () => {
+const useCart = (init?: boolean) => {
     const { cart, set } = useContext(CartContext);
+    const [hasLoaded, setHasLoaded] = useState(false)
+
+    useEffect(() => {
+        if (!init) return;
+
+        const storage = window.localStorage;
+        if (!hasLoaded) {
+            const _cart = storage.getItem('cart');
+            set(_cart ? JSON.parse(_cart) : []);
+            setHasLoaded(true);
+            return;
+        }
+
+        storage.setItem('cart', JSON.stringify(cart));
+    }, [init, cart, hasLoaded]);
 
     const addToCart = (item: ShopItemType) => {
         set((items) => {
