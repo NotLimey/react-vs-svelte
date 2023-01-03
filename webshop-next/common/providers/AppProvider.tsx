@@ -1,12 +1,10 @@
 'use client';
 
-import Head from 'next/head';
 import { createContext } from 'react';
-import { Seo, ShopItemType } from '../types';
+import { ShopItemType } from '../types';
 
 export interface AppContextProps {
 	products: ShopItemType[];
-	seo: Seo;
 }
 
 type AppProviderProps = AppContextProps & {
@@ -15,14 +13,8 @@ type AppProviderProps = AppContextProps & {
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);
 
-const AppProvider = ({ children, products, seo }: AppProviderProps) => (
-	<AppContext.Provider value={{ products, seo }}>
-		<Head>
-			<title>{seo.title}</title>
-			<meta name='description' content={seo.description} />
-		</Head>
-		{children}
-	</AppContext.Provider>
+const AppProvider = ({ children, products }: AppProviderProps) => (
+	<AppContext.Provider value={{ products }}>{children}</AppContext.Provider>
 );
 
 export default AppProvider;

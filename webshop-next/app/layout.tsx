@@ -1,7 +1,4 @@
-import { use } from 'react';
-import AppProvider from '../common/providers/AppProvider';
 import AppWrapper from '../common/providers/AppWrapper';
-import client from '../lib/client';
 import './globals.css';
 
 export default async function RootLayout({
