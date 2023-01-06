@@ -20,7 +20,7 @@ const AppProvider = ({ children, products }: AppProviderProps) => (
 	<AppContext.Provider value={{ products }}>
 		<CartProvider>
 			<Header />
-			<Container classes='mt-24'>{children}</Container>
+			<Container classes='mt-20'>{children}</Container>
 		</CartProvider>
 	</AppContext.Provider>
 );

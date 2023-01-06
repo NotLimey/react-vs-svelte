@@ -6,7 +6,6 @@ const useCart = () => {
     const { cart, set } = useContext(CartContext);
 
     const addToCart = (item: ShopItemType) => {
-        console.log('addToCart', item)
         let items = [...cart];
         const existing = items.findIndex((x) => x.id === item._id);
         if (existing > -1) {
@@ -18,32 +17,30 @@ const useCart = () => {
         localStorage.setItem('cart', JSON.stringify(items));
     }
 
-    const removeFromCart = (id: number) => {
+    const removeFromCart = (id: string) => {
         set((items) => items.filter((item) => item.id !== id));
     }
 
-    const decrement = (id: number) => {
-        set((items) => {
-            const item = items.find((item) => item.id === id);
-
-            if (item && item.amount > 1) {
-                item.amount -= 1;
+    const decrement = (id: string) => {
+        let items = [...cart];
+        const existing = items.findIndex((x) => x.id === id);
+        if (existing > -1) {
+            if (items[existing].amount === 1) {
+                items = items.filter((x) => x.id !== id);
+            } else {
+                items[existing].amount -= 1;
             }
-
-            return items;
-        });
+        }
+        set(items);
     }
 
-    const increment = (id: number) => {
-        set((items) => {
-            const item = items.find((item) => item.id === id);
-
-            if (item) {
-                item.amount += 1;
-            }
-
-            return items;
-        });
+    const increment = (id: string) => {
+        let items = [...cart];
+        const existing = items.findIndex((x) => x.id === id);
+        if (existing > -1) {
+            items[existing].amount += 1;
+        }
+        set(items);
     }
 
     return {

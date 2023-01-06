@@ -1,6 +1,6 @@
 
 export type ShopItemType = {
-    _id: number;
+    _id: string;
     name: string;
     price: number;
     image: string;
@@ -9,7 +9,7 @@ export type ShopItemType = {
 
 export type CartItemType = {
     item: ShopItemType;
-    id: number;
+    id: string;
     amount: number;
 }
 
