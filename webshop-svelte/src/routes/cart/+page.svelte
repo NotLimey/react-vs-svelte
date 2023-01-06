@@ -17,11 +17,11 @@
         <div class="w-full py-4 px-2 border border-black" in:fly="{{ duration: 400 + (i * 100), y: -100}}" out:fly="{{ duration: 200, y:-100 }}">
             <div class="flex justify-between">
                 <p>{item.item.name}</p>
-                <p>NOK {item.item.price},-</p>
+                <p>NOK {item.item.price.toLocaleString('nb-NO')},-</p>
             </div>
             <div class="flex justify-between">
                 <p><strong>Amount</strong> {item.amount}</p>
-                <p><strong>Total</strong> {item.item.price * item.amount},-</p>
+                <p><strong>Total</strong> {(item.item.price * item.amount).toLocaleString('nb-NO')},-</p>
             </div>
             <div class="flex justify-end gap-x-3 pt-4">
                 <button on:click={() => removeFromCart(item.id)} class="px-6 py-1 bg-red-500 hover:bg-red-600 text-white">Remove</button>

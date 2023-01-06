@@ -15,7 +15,7 @@ const Page = () => {
 					>
 						<div className='flex justify-between'>
 							<p>{item.item.name}</p>
-							<p>NOK {item.item.price.toFixed(2)},-</p>
+							<p>NOK {item.item.price.toLocaleString('nb-NO')},-</p>
 						</div>
 						<div className='flex justify-between'>
 							<p>
@@ -23,7 +23,7 @@ const Page = () => {
 							</p>
 							<p>
 								<strong>Total</strong>{' '}
-								{(item.item.price * item.amount).toFixed(2)},-
+								{(item.item.price * item.amount).toLocaleString('nb-NO')},-
 							</p>
 						</div>
 						<div className='flex justify-end gap-x-3 pt-4'>

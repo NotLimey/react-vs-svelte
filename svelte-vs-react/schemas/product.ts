@@ -21,7 +21,7 @@ export const product = defineType({
             name: "price",
             title: "Price",
             type: "number",
-            validation: (Rule) => Rule.min(0).max(10000),
+            validation: (Rule) => Rule.min(0)
         },
         {
             name: "image",
